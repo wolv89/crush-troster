@@ -12,121 +12,270 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: #f5f5f5;
-      color: #333;
-      line-height: 1.5;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 24px;
+      background: #eef1f5;
+      color: #1a1a2e;
+      line-height: 1.4;
     }
 
     header {
-      background: #1a5276;
+      background: #1a3050;
       color: white;
-      padding: 16px 24px;
-      margin-bottom: 24px;
+      padding: 14px 24px;
     }
 
-    header h1 { font-size: 1.5rem; font-weight: 600; }
-    header .subtitle { font-size: 0.875rem; opacity: 0.8; }
+    header h1 { font-size: 1.4rem; font-weight: 600; }
+    header .subtitle { font-size: 0.85rem; opacity: 0.8; }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px 24px;
+      padding-bottom: 50vh;
+    }
 
     .config-bar {
       background: white;
-      border: 1px solid #ddd;
+      border: 1px solid #d0d5dd;
       border-radius: 6px;
-      padding: 12px 16px;
-      margin-bottom: 24px;
+      padding: 10px 16px;
+      margin-bottom: 20px;
       display: flex;
-      gap: 24px;
+      align-items: center;
+      gap: 20px;
       flex-wrap: wrap;
-      font-size: 0.875rem;
+      font-size: 0.85rem;
     }
 
-    .config-bar .item { display: flex; gap: 6px; }
-    .config-bar .label { font-weight: 600; }
+    .config-bar .item { display: flex; gap: 5px; }
+    .config-bar .label { font-weight: 600; color: #555; }
 
-    .section-card {
+    .config-bar .seed-controls {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .config-bar .seed-controls label {
+      font-weight: 600;
+      color: #555;
+    }
+
+    .config-bar .seed-controls input {
+      width: 100px;
+      padding: 5px 8px;
+      border: 1px solid #d0d5dd;
+      border-radius: 4px;
+      font-size: 0.85rem;
+    }
+
+    .config-bar .seed-controls button {
+      padding: 5px 14px;
+      border: 1px solid #d0d5dd;
+      border-radius: 4px;
+      background: #f8f9fa;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .config-bar .seed-controls button:hover { background: #e9ecef; }
+
+    .config-bar .seed-controls button.shuffle {
+      background: #1a3050;
+      color: white;
+      border-color: #1a3050;
+    }
+
+    .config-bar .seed-controls button.shuffle:hover { background: #15283f; }
+
+    .roster-grid {
+      margin-bottom: 28px;
+      overflow-x: auto;
+    }
+
+    .roster-grid table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
+
+    .roster-grid thead th {
+      background: #1a3050;
+      color: white;
+      padding: 10px 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      border: 1px solid #15283f;
+      white-space: nowrap;
+    }
+
+    .roster-grid thead th.date-col {
+      width: 56px;
+      text-align: right;
+      padding-right: 12px;
+    }
+
+    .month-row td {
+      background: #2c5282;
+      color: white;
+      padding: 5px 14px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      border: none;
+    }
+
+    .roster-grid tbody td {
+      padding: 8px 6px;
+      text-align: center;
+      font-size: 0.85rem;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      vertical-align: middle;
+    }
+
+    .row-even td { background: #c5d1e0; }
+    .row-odd td { background: #adbdd2; }
+
+    .date-cell {
+      text-align: right !important;
+      padding-right: 12px !important;
+      font-weight: 600;
+      white-space: nowrap;
+      width: 56px;
+    }
+
+    .roster-cell {
+      min-width: 110px;
+      cursor: default;
+      position: relative;
+      user-select: none;
+    }
+
+    .roster-cell.has-assignment { cursor: pointer; }
+
+    .roster-cell.selected {
+      outline: 3px solid #e53e3e;
+      outline-offset: -3px;
+      z-index: 1;
+    }
+
+    .roster-cell.swap-target {
+      outline: 2px dashed #e53e3e;
+      outline-offset: -2px;
+    }
+
+    .court-group {
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .vs-opponent {
+      font-size: 0.75rem;
+      opacity: 0.7;
+      margin-top: 1px;
+    }
+
+    .overflow-warning {
+      color: #c53030;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .stats-section {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      z-index: 100;
+      max-height: 50vh;
+      overflow-y: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
       background: white;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      margin-bottom: 16px;
+      border: 1px solid #d0d5dd;
+    }
+
+    .stats-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 14px;
+      cursor: pointer;
+      user-select: none;
+      background: #1a3050;
+      color: white;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .stats-section.open .stats-toggle {
+      border-radius: 8px 8px 0 0;
+    }
+
+    .stats-toggle .toggle-icon {
+      margin-left: 10px;
+      font-size: 0.7rem;
+    }
+
+    .stats-table {
+      border-collapse: collapse;
+      background: white;
       overflow: hidden;
     }
 
-    .section-header {
-      background: #2c3e50;
-      color: white;
-      padding: 10px 16px;
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-
-    .team-header {
-      background: #ecf0f1;
-      padding: 8px 16px;
-      font-weight: 600;
-      font-size: 0.875rem;
-      border-bottom: 1px solid #ddd;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    th {
-      text-align: left;
-      padding: 8px 16px;
-      background: #f8f9fa;
-      border-bottom: 2px solid #ddd;
+    .stats-table thead th {
+      background: #f0f2f5;
+      padding: 8px 10px;
       font-size: 0.8rem;
+      font-weight: 600;
+      text-align: center;
+      border-bottom: 2px solid #d0d5dd;
+      border-right: 1px solid #d0d5dd;
+      color: #555;
+    }
+
+    .stats-table thead th.team-header {
+      text-align: left;
+      padding-left: 14px;
+    }
+
+    .stats-table thead th.cg-header {
+      background: #1a3050;
+      color: white;
+    }
+
+    .stats-table thead th.cg-border {
+      border-right: 2px solid #d0d5dd;
+    }
+
+    .stats-table thead th.sub-header {
+      font-size: 0.7rem;
+      padding: 4px 8px;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #666;
     }
 
-    td {
-      padding: 6px 16px;
+    .stats-table tbody td {
+      padding: 6px 10px;
+      font-size: 0.85rem;
+      text-align: center;
       border-bottom: 1px solid #eee;
-      font-size: 0.875rem;
+      border-right: 1px solid #eee;
     }
 
-    tr:last-child td { border-bottom: none; }
+    .stats-table tbody td.team-name {
+      text-align: left;
+      padding-left: 14px;
+      font-weight: 500;
+    }
 
-    .round-num { width: 50px; text-align: center; }
-    .date-col { width: 120px; }
-
-    .home-badge {
-      display: inline-block;
-      background: #27ae60;
-      color: white;
-      font-size: 0.7rem;
-      padding: 1px 6px;
-      border-radius: 3px;
-      margin-left: 6px;
+    .stats-table tbody td.total-col {
       font-weight: 600;
     }
 
-    .away-badge {
-      display: inline-block;
-      background: #3498db;
-      color: white;
-      font-size: 0.7rem;
-      padding: 1px 6px;
-      border-radius: 3px;
-      margin-left: 6px;
-      font-weight: 600;
+    .stats-table .group-border {
+      border-right: 2px solid #d0d5dd;
     }
-
-    .no-play {
-      color: #999;
-      font-style: italic;
-    }
-
-    .no-play td { background: #fafafa; }
 
     .loading {
       text-align: center;
@@ -140,70 +289,238 @@
       padding: 60px;
       color: #c0392b;
     }
-
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-
-    .summary-card {
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      padding: 16px;
-    }
-
-    .summary-card h3 {
-      font-size: 0.95rem;
-      margin-bottom: 8px;
-      color: #2c3e50;
-    }
-
-    .date-group-header {
-      background: #1a5276;
-      color: white;
-      padding: 8px 16px;
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-
-    .tabs {
-      display: flex;
-      gap: 0;
-      margin-bottom: 24px;
-    }
-
-    .tab {
-      padding: 10px 20px;
-      background: white;
-      border: 1px solid #ddd;
-      cursor: pointer;
-      font-size: 0.875rem;
-      font-weight: 500;
-    }
-
-    .tab:first-child { border-radius: 6px 0 0 6px; }
-    .tab:last-child { border-radius: 0 6px 6px 0; }
-    .tab + .tab { border-left: none; }
-
-    .tab.active {
-      background: #1a5276;
-      color: white;
-      border-color: #1a5276;
-    }
   </style>
 </head>
 <body>
   <div id="root"></div>
   <script type="text/babel">
-    const { useState, useEffect } = React;
+    const { useState, useEffect, useMemo } = React;
+
+    function mulberry32(seed) {
+      return function() {
+        seed |= 0;
+        seed = seed + 0x6D2B79F5 | 0;
+        let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+        t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+        return ((t ^ t >>> 14) >>> 0) / 4294967296;
+      };
+    }
+
+    function shuffle(arr, rng) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(rng() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function stripTime(name) {
+      return name.replace(/\s*\([\d:]+\)\s*$/, '').trim();
+    }
+
+    function isClubTeam(teamName, clubName) {
+      return teamName.toLowerCase().includes(clubName.toLowerCase());
+    }
+
+    function parseDate(dateStr) {
+      const months = { Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5, Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11 };
+      const parts = dateStr.trim().split(/\s+/);
+      if (parts.length < 3) return new Date(0);
+      return new Date(2000 + parseInt(parts[2]), months[parts[1]] || 0, parseInt(parts[0]));
+    }
+
+    function getMonthKey(dateStr) {
+      const d = parseDate(dateStr);
+      return d.getFullYear() + '-' + d.getMonth();
+    }
+
+    function getMonthLabel(dateStr) {
+      return parseDate(dateStr).toLocaleString('default', { month: 'long' });
+    }
+
+    function getDayOrdinal(dateStr) {
+      const day = parseInt(dateStr.trim().split(/\s+/)[0]);
+      const s = ['th', 'st', 'nd', 'rd'];
+      const v = day % 100;
+      return day + (s[(v - 20) % 10] || s[v] || s[0]);
+    }
+
+    function shortName(teamLabel, clubName) {
+      const escaped = clubName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const short = teamLabel.replace(new RegExp(escaped + '\\s*', 'i'), '').trim();
+      return short || teamLabel;
+    }
+
+    function getCourtGroups(totalCourts, courtsPerTeam) {
+      const groups = [];
+      const numGroups = Math.floor(totalCourts / courtsPerTeam);
+      for (let i = 0; i < numGroups; i++) {
+        const start = i * courtsPerTeam + 1;
+        const courts = [];
+        for (let j = 0; j < courtsPerTeam; j++) courts.push(start + j);
+        groups.push(courts.join(' / '));
+      }
+      return groups;
+    }
+
+    function buildRosterData(data) {
+      const clubName = data.config.club_name;
+      const teams = data.fixtures.map(f => f.team.label);
+      const teamSections = {};
+      data.fixtures.forEach(f => { teamSections[f.team.label] = f.section.label; });
+
+      const cellData = {};
+      const allDates = new Set();
+
+      data.fixtures.forEach(tf => {
+        const teamLabel = tf.team.label;
+        tf.rounds.forEach(r => {
+          if (r.no_play || (!r.home_team && !r.away_team)) return;
+          allDates.add(r.date);
+          if (!cellData[r.date]) cellData[r.date] = {};
+
+          const homeStripped = stripTime(r.home_team);
+          const awayStripped = stripTime(r.away_team);
+
+          if (homeStripped.toLowerCase() === teamLabel.toLowerCase()) {
+            cellData[r.date][teamLabel] = {
+              status: isClubTeam(r.away_team, clubName) ? 'home_intra' : 'home',
+              opponent: awayStripped,
+            };
+          } else if (awayStripped.toLowerCase() === teamLabel.toLowerCase()) {
+            cellData[r.date][teamLabel] = {
+              status: isClubTeam(r.home_team, clubName) ? 'away_intra' : 'away_external',
+              opponent: homeStripped,
+            };
+          }
+        });
+      });
+
+      const sortedDates = [...allDates].sort((a, b) => parseDate(a) - parseDate(b));
+
+      const months = [];
+      let currentKey = '';
+      sortedDates.forEach(d => {
+        const key = getMonthKey(d);
+        if (key !== currentKey) {
+          months.push({ label: getMonthLabel(d), dates: [] });
+          currentKey = key;
+        }
+        months[months.length - 1].dates.push(d);
+      });
+
+      return { teams, teamSections, cellData, sortedDates, months };
+    }
+
+    function assignCourts(rosterData, courtGroups, seed) {
+      const rng = mulberry32(seed);
+      const { teams, cellData, sortedDates } = rosterData;
+      const assignments = {};
+      const courtCounts = {};
+
+      teams.forEach(t => {
+        courtCounts[t] = {};
+        courtGroups.forEach(g => { courtCounts[t][g] = 0; });
+      });
+
+      sortedDates.forEach(date => {
+        const dateCells = cellData[date] || {};
+        const homeTeams = teams.filter(t => {
+          const cell = dateCells[t];
+          return cell && (cell.status === 'home' || cell.status === 'home_intra');
+        });
+
+        if (homeTeams.length === 0) return;
+
+        assignments[date] = {};
+        const available = [...courtGroups];
+        const shuffled = shuffle(homeTeams, rng);
+
+        for (const team of shuffled) {
+          if (available.length === 0) break;
+
+          const shuffledAvail = shuffle(available, rng);
+          let bestGroup = shuffledAvail[0];
+          let bestCount = courtCounts[team][shuffledAvail[0]] || 0;
+
+          for (let i = 1; i < shuffledAvail.length; i++) {
+            const count = courtCounts[team][shuffledAvail[i]] || 0;
+            if (count < bestCount) {
+              bestCount = count;
+              bestGroup = shuffledAvail[i];
+            }
+          }
+
+          assignments[date][team] = bestGroup;
+          courtCounts[team][bestGroup]++;
+          available.splice(available.indexOf(bestGroup), 1);
+        }
+      });
+
+      return assignments;
+    }
+
+    function computeStats(rosterData, assignments, courtGroups) {
+      const { teams, cellData, sortedDates } = rosterData;
+      const stats = {};
+
+      teams.forEach(t => {
+        stats[t] = {};
+        courtGroups.forEach(g => { stats[t][g] = { home: 0, away: 0 }; });
+      });
+
+      sortedDates.forEach(date => {
+        const dateAssigns = assignments[date] || {};
+        const dateCells = cellData[date] || {};
+
+        Object.entries(dateAssigns).forEach(([team, group]) => {
+          if (stats[team] && stats[team][group]) {
+            stats[team][group].home++;
+          }
+
+          const cell = dateCells[team];
+          if (cell && cell.status === 'home_intra') {
+            const oppLabel = rosterData.teams.find(
+              t => t.toLowerCase() === cell.opponent.toLowerCase()
+            );
+            if (oppLabel && stats[oppLabel] && stats[oppLabel][group]) {
+              stats[oppLabel][group].away++;
+            }
+          }
+        });
+      });
+
+      return stats;
+    }
 
     function App() {
       const [data, setData] = useState(null);
       const [error, setError] = useState(null);
-      const [view, setView] = useState("by-team");
+      const [appliedSeed, setAppliedSeed] = useState(42);
+      const [seedInput, setSeedInput] = useState('42');
+      const [assignments, setAssignments] = useState({});
+      const [selectedCell, setSelectedCell] = useState(null);
+      const [refreshKey, setRefreshKey] = useState(0);
+
+      const rosterData = useMemo(() => data ? buildRosterData(data) : null, [data]);
+
+      const courtGroups = useMemo(() => {
+        if (!data) return [];
+        return getCourtGroups(data.config.total_courts, data.config.courts_per_team);
+      }, [data]);
+
+      useEffect(() => {
+        if (rosterData && courtGroups.length > 0) {
+          setAssignments(assignCourts(rosterData, courtGroups, appliedSeed));
+          setSelectedCell(null);
+        }
+      }, [rosterData, courtGroups, appliedSeed, refreshKey]);
+
+      const stats = useMemo(() => {
+        if (!rosterData || !courtGroups.length) return {};
+        return computeStats(rosterData, assignments, courtGroups);
+      }, [rosterData, assignments, courtGroups]);
 
       useEffect(() => {
         fetch("/api/fixtures")
@@ -215,212 +532,237 @@
           .catch(e => setError(e.message));
       }, []);
 
+      function handleRefresh() {
+        const s = parseInt(seedInput) || 0;
+        if (s === appliedSeed) {
+          setRefreshKey(k => k + 1);
+        } else {
+          setAppliedSeed(s);
+        }
+      }
+
+      function handleShuffle() {
+        const s = Math.floor(Math.random() * 100000);
+        setSeedInput(String(s));
+        setAppliedSeed(s);
+      }
+
+      function handleKeyDown(e) {
+        if (e.key === 'Enter') handleRefresh();
+      }
+
+      function handleCellClick(date, team) {
+        const hasAssignment = !!(assignments[date] && assignments[date][team]);
+
+        if (!selectedCell) {
+          if (hasAssignment) setSelectedCell({ date, team });
+          return;
+        }
+
+        if (selectedCell.date === date && selectedCell.team === team) {
+          setSelectedCell(null);
+          return;
+        }
+
+        if (selectedCell.date === date && hasAssignment) {
+          const newAssignments = { ...assignments, [date]: { ...assignments[date] } };
+          const a = newAssignments[date];
+          const tmp = a[selectedCell.team];
+          a[selectedCell.team] = a[team];
+          a[team] = tmp;
+          setAssignments(newAssignments);
+          setSelectedCell(null);
+          return;
+        }
+
+        setSelectedCell(hasAssignment ? { date, team } : null);
+      }
+
       if (error) return <div className="error"><h2>Error</h2><p>{error}</p></div>;
       if (!data) return <div className="loading">Loading fixtures...</div>;
+
+      const clubName = data.config.club_name;
 
       return (
         <div>
           <header>
             <h1>Troster</h1>
-            <div className="subtitle">{data.competition.label} &mdash; {data.config.club_name}</div>
+            <div className="subtitle">{data.competition.label} &mdash; {clubName}</div>
           </header>
           <div className="container">
-            <ConfigBar config={data.config} scrapedAt={data.scraped_at} />
-            <div className="tabs">
-              <div className={`tab ${view === "by-team" ? "active" : ""}`} onClick={() => setView("by-team")}>By Team</div>
-              <div className={`tab ${view === "by-date" ? "active" : ""}`} onClick={() => setView("by-date")}>By Date</div>
-              <div className={`tab ${view === "home-only" ? "active" : ""}`} onClick={() => setView("home-only")}>Home Matches</div>
-            </div>
-            {view === "by-team" && <ByTeamView fixtures={data.fixtures} clubName={data.config.club_name} />}
-            {view === "by-date" && <ByDateView fixtures={data.fixtures} clubName={data.config.club_name} />}
-            {view === "home-only" && <HomeOnlyView fixtures={data.fixtures} clubName={data.config.club_name} />}
+            <ConfigBar
+              config={data.config}
+              scrapedAt={data.scraped_at}
+              seedInput={seedInput}
+              onSeedChange={e => setSeedInput(e.target.value)}
+              onSeedKeyDown={handleKeyDown}
+              onRefresh={handleRefresh}
+              onShuffle={handleShuffle}
+            />
+            <RosterGrid
+              rosterData={rosterData}
+              assignments={assignments}
+              courtGroups={courtGroups}
+              clubName={clubName}
+              selectedCell={selectedCell}
+              onCellClick={handleCellClick}
+            />
+            <CourtStats
+              rosterData={rosterData}
+              stats={stats}
+              courtGroups={courtGroups}
+              clubName={clubName}
+            />
           </div>
         </div>
       );
     }
 
-    function ConfigBar({ config, scrapedAt }) {
+    function ConfigBar({ config, scrapedAt, seedInput, onSeedChange, onSeedKeyDown, onRefresh, onShuffle }) {
       const scraped = new Date(scrapedAt).toLocaleString();
       return (
         <div className="config-bar">
-          <div className="item"><span className="label">Club:</span> {config.club_name}</div>
           <div className="item"><span className="label">Courts:</span> {config.total_courts}</div>
           <div className="item"><span className="label">Per team:</span> {config.courts_per_team}</div>
           <div className="item"><span className="label">Data from:</span> {scraped}</div>
+          <div className="seed-controls">
+            <label>Seed:</label>
+            <input
+              type="number"
+              value={seedInput}
+              onChange={onSeedChange}
+              onKeyDown={onSeedKeyDown}
+            />
+            <button onClick={onRefresh}>Refresh</button>
+            <button className="shuffle" onClick={onShuffle}>Shuffle</button>
+          </div>
         </div>
       );
     }
 
-    function ByTeamView({ fixtures, clubName }) {
-      const grouped = {};
-      fixtures.forEach(f => {
-        if (!grouped[f.section.label]) grouped[f.section.label] = [];
-        grouped[f.section.label].push(f);
-      });
-
-      return Object.entries(grouped).map(([section, teams]) => (
-        <div className="section-card" key={section}>
-          <div className="section-header">{section}</div>
-          {teams.map(tf => (
-            <div key={tf.team.value}>
-              <div className="team-header">{tf.team.label}</div>
-              <FixtureTable rounds={tf.rounds} teamLabel={tf.team.label} clubName={clubName} />
-            </div>
-          ))}
-        </div>
-      ));
-    }
-
-    function ByDateView({ fixtures, clubName }) {
-      const allRounds = [];
-      fixtures.forEach(tf => {
-        tf.rounds.forEach(r => {
-          if (!r.no_play) {
-            allRounds.push({ ...r, team: tf.team.label, section: tf.section.label });
-          }
-        });
-      });
-
-      allRounds.sort((a, b) => parseDate(a.date) - parseDate(b.date));
-
-      const grouped = {};
-      allRounds.forEach(r => {
-        if (!grouped[r.date]) grouped[r.date] = [];
-        grouped[r.date].push(r);
-      });
+    function RosterGrid({ rosterData, assignments, courtGroups, clubName, selectedCell, onCellClick }) {
+      const { teams, months, cellData } = rosterData;
 
       return (
-        <div className="section-card">
-          {Object.entries(grouped).map(([date, rounds]) => (
-            <div key={date}>
-              <div className="date-group-header">{date}</div>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Team</th>
-                    <th>Section</th>
-                    <th>Opponent</th>
-                    <th>Venue</th>
+        <div className="roster-grid">
+          <table>
+            <thead>
+              <tr>
+                <th className="date-col"></th>
+                {teams.map(t => (
+                  <th key={t}>{shortName(t, clubName)}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {months.map(({ label, dates }) => (
+                <React.Fragment key={label}>
+                  <tr className="month-row">
+                    <td colSpan={teams.length + 1}>{label}</td>
                   </tr>
-                </thead>
-                <tbody>
-                  {rounds.map((r, i) => {
-                    const isHome = isClubTeam(r.home_team, clubName);
-                    const opponent = isHome ? r.away_team : r.home_team;
+                  {dates.map((date, di) => {
+                    const dateCells = cellData[date] || {};
+                    const dateAssigns = assignments[date] || {};
                     return (
-                      <tr key={i}>
-                        <td>{r.team}</td>
-                        <td>{r.section}</td>
-                        <td>{opponent}</td>
-                        <td>{isHome ? <span className="home-badge">HOME</span> : <span className="away-badge">AWAY</span>}</td>
+                      <tr key={date} className={di % 2 === 0 ? 'row-even' : 'row-odd'}>
+                        <td className="date-cell">{getDayOrdinal(date)}</td>
+                        {teams.map(t => {
+                          const cell = dateCells[t];
+                          const group = dateAssigns[t];
+                          const isHome = cell && (cell.status === 'home' || cell.status === 'home_intra');
+                          const isSelected = selectedCell && selectedCell.date === date && selectedCell.team === t;
+                          const isSwapTarget = selectedCell && selectedCell.date === date && selectedCell.team !== t && isHome;
+
+                          const classes = ['roster-cell'];
+                          if (isHome) classes.push('has-assignment');
+                          if (isSelected) classes.push('selected');
+                          if (isSwapTarget) classes.push('swap-target');
+
+                          return (
+                            <td
+                              key={t}
+                              className={classes.join(' ')}
+                              onClick={() => onCellClick(date, t)}
+                            >
+                              {isHome && group && (
+                                <div>
+                                  <div className="court-group">{group}</div>
+                                  {cell.status === 'home_intra' && (
+                                    <div className="vs-opponent">vs {shortName(cell.opponent, clubName)}</div>
+                                  )}
+                                </div>
+                              )}
+                              {isHome && !group && (
+                                <div className="overflow-warning">!!</div>
+                              )}
+                            </td>
+                          );
+                        })}
                       </tr>
                     );
                   })}
-                </tbody>
-              </table>
-            </div>
-          ))}
+                </React.Fragment>
+              ))}
+            </tbody>
+          </table>
         </div>
       );
     }
 
-    function HomeOnlyView({ fixtures, clubName }) {
-      const homeRounds = [];
-      fixtures.forEach(tf => {
-        tf.rounds.forEach(r => {
-          if (!r.no_play && isClubTeam(r.home_team, clubName)) {
-            homeRounds.push({ ...r, team: tf.team.label, section: tf.section.label });
-          }
-        });
-      });
-
-      homeRounds.sort((a, b) => parseDate(a.date) - parseDate(b.date));
-
-      const grouped = {};
-      homeRounds.forEach(r => {
-        if (!grouped[r.date]) grouped[r.date] = [];
-        grouped[r.date].push(r);
-      });
+    function CourtStats({ rosterData, stats, courtGroups, clubName }) {
+      const [open, setOpen] = useState(false);
+      const { teams } = rosterData;
 
       return (
-        <div className="section-card">
-          <div className="section-header">Home Matches</div>
-          {Object.entries(grouped).map(([date, rounds]) => (
-            <div key={date}>
-              <div className="date-group-header">{date}</div>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Team</th>
-                    <th>Section</th>
-                    <th>vs</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {rounds.map((r, i) => (
-                    <tr key={i}>
-                      <td>{r.team}</td>
-                      <td>{r.section}</td>
-                      <td>{r.away_team}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          ))}
-        </div>
-      );
-    }
-
-    function FixtureTable({ rounds, teamLabel, clubName }) {
-      return (
-        <table>
-          <thead>
-            <tr>
-              <th className="round-num">Rd</th>
-              <th className="date-col">Date</th>
-              <th>Home</th>
-              <th>Away</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rounds.map((r, i) => {
-              if (r.no_play) {
-                return (
-                  <tr key={i} className="no-play">
-                    <td className="round-num"></td>
-                    <td>{r.date}</td>
-                    <td colSpan="2">No Play</td>
-                  </tr>
-                );
-              }
-              const isHome = isClubTeam(r.home_team, clubName);
-              return (
-                <tr key={i}>
-                  <td className="round-num">{r.round}</td>
-                  <td>{r.date}</td>
-                  <td>{r.home_team} {isHome && <span className="home-badge">HOME</span>}</td>
-                  <td>{r.away_team} {!isHome && <span className="away-badge">AWAY</span>}</td>
+        <div className={'stats-section' + (open ? ' open' : '')}>
+          <div className="stats-toggle" onClick={() => setOpen(o => !o)}>
+            Court Usage
+            <span className="toggle-icon">{open ? '\u25BC' : '\u25B2'}</span>
+          </div>
+          {open && <table className="stats-table">
+            <thead>
+              <tr>
+                <th className="team-header" rowSpan="2">Team</th>
+                {courtGroups.map((g, i) => (
+                  <th
+                    key={g}
+                    className={'cg-header' + (i < courtGroups.length - 1 ? ' cg-border' : '')}
+                    colSpan="3"
+                  >{g}</th>
+                ))}
+              </tr>
+              <tr>
+                {courtGroups.map((g, gi) => (
+                  <React.Fragment key={g}>
+                    <th className="sub-header">H</th>
+                    <th className="sub-header">A</th>
+                    <th className={'sub-header' + (gi < courtGroups.length - 1 ? ' group-border' : '')}
+                    >T</th>
+                  </React.Fragment>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {teams.map(t => (
+                <tr key={t}>
+                  <td className="team-name">{shortName(t, clubName)}</td>
+                  {courtGroups.map((g, gi) => {
+                    const s = (stats[t] && stats[t][g]) || { home: 0, away: 0 };
+                    return (
+                      <React.Fragment key={g}>
+                        <td>{s.home}</td>
+                        <td>{s.away}</td>
+                        <td className={'total-col' + (gi < courtGroups.length - 1 ? ' group-border' : '')}
+                        >{s.home + s.away}</td>
+                      </React.Fragment>
+                    );
+                  })}
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
+              ))}
+            </tbody>
+          </table>}
+        </div>
       );
-    }
-
-    function isClubTeam(teamName, clubName) {
-      return teamName.toLowerCase().includes(clubName.toLowerCase());
-    }
-
-    function parseDate(dateStr) {
-      const months = { Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5, Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11 };
-      const parts = dateStr.trim().split(/\s+/);
-      if (parts.length < 3) return 0;
-      const day = parseInt(parts[0]);
-      const month = months[parts[1]] || 0;
-      const year = 2000 + parseInt(parts[2]);
-      return new Date(year, month, day).getTime();
     }
 
     ReactDOM.createRoot(document.getElementById("root")).render(<App />);

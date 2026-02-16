@@ -23,3 +23,14 @@ The breakdown will look like this:
 LATER:
 We will need to assign teams to different courts in a roster, with options to shuffle them, and track how many times they play on each court (whether as the home or away team) so we can craft a balanced roster.
 
+[PART2]----
+
+Now we need to actually assign the teams to courts for their matches in a given competition. I have added a reference photo into this repo: roster-example.jpg - this is how I have set up these rosters previously, by manually writing them into a spreadsheet with some colours and styles for readability. We don't need to match the exact style, but I like the layout with the teams named across the top and the dates listed down the side - broken up by months. Then the court allocation in the corresponding cell, including where the match is against another team from the same club.
+
+Next steps:
+
+1. Rebuild the web layout to more closely match the example photo
+2. Add a section below, or to the side, that shows how many times each team plays on each court (or court pair)
+  a. Seperate the counts into playing as the home team, playing as the away team, and a total
+3. Assign the teams to courts using a mix of alogorithm and random selection. Add an option to choose a seed and refresh the allocations.
+4. Add an option to click on one assigned cell and then click on a different cell in the same row, to swap the court pairings.
